@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+<property name="DEV_HOME" value="C:/logs/AppLogs" />
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT" ignoreExceptions="false">
+			<PatternLayout
+				pattern="[%d{MM:dd HH:mm:ss.SSS}][${hostName}] [%level] [%logger{36}] [%c] [%x] - %msg%n" />
+		</Console>
+		<File name="Debug" fileName="C:/logs/AppLogs/Applog.log">
+			<PatternLayout>
+				<pattern>%d %p %C{1.} [%t] %m%n</pattern>
+			</PatternLayout>
+		</File>
+<!-- 		<File name="Error" fileName="C:/logs/AppLogs/Error.log"> -->
+<!-- 			<PatternLayout> -->
+<!-- 				<pattern>%d %p %C{1.} [%t] %m%n</pattern> -->
+<!-- 			</PatternLayout> -->
+<!-- 		</File> -->
+
+	</Appenders>
+	<Loggers>
+		<Root level="debug">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="Debug" />
+		</Root>
+<!-- 		<logger name="event" level="error"> -->
+<!-- 			<appender-ref ref="Error" /> -->
+
+<!-- 		</logger> -->
+	</Loggers>
+</Configuration>
