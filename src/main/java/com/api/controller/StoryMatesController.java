@@ -17,8 +17,71 @@ import com.mongodb.DBObject;
 public class StoryMatesController {
 	Logger LOGGER = LoggerFactory.getLogger(StoryMatesController.class);
 
-	@GetMapping("/Hay/{collectionName}")
-	public String returnHello(@RequestHeader Map<String, String> headerMap, @RequestParam Map<String, String> paramMap,
+	@GetMapping("/Main/{collectionName}")
+	public String mainCollection(@RequestHeader Map<String, String> headerMap, @RequestParam Map<String, String> paramMap,
+			@PathVariable Map<String, String> pathVariableMap) throws Exception {
+		String collectionName;
+		DBObject collection = null;
+		try {
+			collectionName = (String) pathVariableMap.get("collectionName");
+			if (collectionName.trim() == "" || collectionName.isEmpty() || collectionName.equalsIgnoreCase("null")) {
+				LOGGER.error("Name of collection to be retrieved is null or empty ", collection);
+				throw new Exception("Name of collection to be retrieved is null");
+			}
+			LOGGER.debug("Collection to retieve:: {}", collectionName);
+			StoryMatesService storyMatesService = new StoryMatesService();
+			collection = storyMatesService.getDocuments(collectionName);
+		} catch (Exception e) {
+			LOGGER.error("exception while retirieving collection",e);
+			return "error response from API";
+		}
+		return collection.toString();
+	}
+	
+	@GetMapping("/Sports/{collectionName}")
+	public String sportsMain(@RequestHeader Map<String, String> headerMap, @RequestParam Map<String, String> paramMap,
+			@PathVariable Map<String, String> pathVariableMap) throws Exception {
+		String collectionName;
+		DBObject collection = null;
+		try {
+			collectionName = (String) pathVariableMap.get("collectionName");
+			if (collectionName.trim() == "" || collectionName.isEmpty() || collectionName.equalsIgnoreCase("null")) {
+				LOGGER.error("Name of collection to be retrieved is null or empty ", collection);
+				throw new Exception("Name of collection to be retrieved is null");
+			}
+			LOGGER.debug("Collection to retieve:: {}", collectionName);
+			StoryMatesService storyMatesService = new StoryMatesService();
+			collection = storyMatesService.getDocuments(collectionName);
+		} catch (Exception e) {
+			LOGGER.error("exception while retirieving collection",e);
+			return "error response from API";
+		}
+		return collection.toString();
+	}
+	
+	@GetMapping("/Twitts/{collectionName}")
+	public String twitsMain(@RequestHeader Map<String, String> headerMap, @RequestParam Map<String, String> paramMap,
+			@PathVariable Map<String, String> pathVariableMap) throws Exception {
+		String collectionName;
+		DBObject collection = null;
+		try {
+			collectionName = (String) pathVariableMap.get("collectionName");
+			if (collectionName.trim() == "" || collectionName.isEmpty() || collectionName.equalsIgnoreCase("null")) {
+				LOGGER.error("Name of collection to be retrieved is null or empty ", collection);
+				throw new Exception("Name of collection to be retrieved is null");
+			}
+			LOGGER.debug("Collection to retieve:: {}", collectionName);
+			StoryMatesService storyMatesService = new StoryMatesService();
+			collection = storyMatesService.getDocuments(collectionName);
+		} catch (Exception e) {
+			LOGGER.error("exception while retirieving collection",e);
+			return "error response from API";
+		}
+		return collection.toString();
+	}
+	
+	@GetMapping("/Politics/{collectionName}")
+	public String politicsMain(@RequestHeader Map<String, String> headerMap, @RequestParam Map<String, String> paramMap,
 			@PathVariable Map<String, String> pathVariableMap) throws Exception {
 		String collectionName;
 		DBObject collection = null;
