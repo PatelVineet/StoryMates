@@ -39,7 +39,7 @@ public class StoryMatesDao {
 	@SuppressWarnings({ "deprecation", "resource" })
 	private DB createConnection(){
 		LOGGER.debug("Creating DB connection");
-		MongoClient client = new MongoClient(database,port);
+		MongoClient client = new MongoClient("localhost",27017);
 		DB dbConnection = client.getDB("testDB");
 		LOGGER.debug("Connection ::{}",dbConnection);
 		return dbConnection;

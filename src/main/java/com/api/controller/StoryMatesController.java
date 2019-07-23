@@ -100,4 +100,25 @@ public class StoryMatesController {
 		}
 		return collection.toString();
 	}
+	
+	@GetMapping("/{category}/{collectionName}/{categoryId}")
+	public String subStories(@RequestHeader Map<String, String> headerMap, @RequestParam Map<String, String> paramMap,
+			@PathVariable Map<String, String> pathVariableMap) throws Exception {
+		String collectionName;
+		DBObject collection = null;
+		try {
+			collectionName = (String) pathVariableMap.get("collectionName");
+			if (collectionName.trim() == "" || collectionName.isEmpty() || collectionName.equalsIgnoreCase("null")) {
+				LOGGER.error("Name of collection to be retrieved is null or empty ", collection);
+				throw new Exception("Name of collection to be retrieved is null");
+			}
+			LOGGER.debug("Collection to retieve:: {}", collectionName);
+			StoryMatesService storyMatesService = new StoryMatesService();
+			collection = storyMatesService.getDocuments(collectionName);
+		} catch (Exception e) {
+			LOGGER.error("exception while retirieving collection",e);
+			return "error response from API";
+		}
+		return collection.toString();
+	}
 }
